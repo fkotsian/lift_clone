@@ -61,6 +61,14 @@ def logout
   click_button "Log Out"
 end
 
+def create_test_goal
+  visit new_user_goal_url
+  fill_in "Goal Title", with: "Win at App Academy"
+  fill_in "Goal Description", with: "Win at AA Assessments"
+  choose('Public')
+  click_button("Create Goal")
+  expect(page).to have_content "Win at App Academy"
+end
 
 
 
