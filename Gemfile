@@ -40,9 +40,16 @@ group :development do
   gem 'binding_of_caller'
 end
 
-group :test do
+group :development, :test do
   gem 'rspec-rails'
-  gem 'capybara'
+  gem 'factory_girl_rails'
+end
+
+group :test do
+   gem 'capybara'
+   gem 'faker'
+   gem 'guard-rspec'
+   gem 'launchy'
 end
 
 # Use ActiveModel has_secure_password
