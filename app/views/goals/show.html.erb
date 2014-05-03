@@ -1,3 +1,7 @@
 <h1><%= @goal.title %></h1>
-<h1><%= @goal.description %></h1>
+<h3><%= @goal.description %></h1>
+<p>Status: <%= @goal.completed ? "Complete" : "Incomplete" %></p>
 
+
+<%= link_to "Edit Goal", edit_goal_url(@goal) %><br>
+<%= link_to "Back to Home", user_url(@goal.user) %>

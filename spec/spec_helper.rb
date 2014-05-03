@@ -57,22 +57,42 @@ def login_as_jeff
   click_button "Log In"
 end
 
+def signup_as_buck
+  visit new_user_url
+  fill_in "Username", with: "Buck"
+  fill_in "Password", with: "australia"
+  click_button "Sign Up"
+end
+
+def login_as_buck
+  visit new_session_url
+  fill_in "Username", with: "Buck"
+  fill_in "Password", with: "australia"
+  click_button "Log In"
+end
+
 def logout
   click_button "Log Out"
 end
 
 def create_test_goal
-  visit new_user_goal_url
   fill_in "Goal Title", with: "Win at App Academy"
   fill_in "Goal Description", with: "Win at AA Assessments"
   choose('Public')
   click_button("Create Goal")
-  expect(page).to have_content "Win at App Academy"
+  #expect(page).to have_content "Win at App Academy"
 end
 
+def create_private_goal
+  fill_in "Goal Title", with: "Keep it secret"
+  fill_in "Goal Description", with: "Keep it safe"
+  choose('Private')
+  click_button("Create Goal")
+end
 
-
-
-
-
-
+def create_private_goal
+  fill_in "Goal Title", with: "Banana SMOOTOOOOTHIE"
+  fill_in "Goal Description", with: "Keep it safe"
+  choose('Public')
+  click_button("Create Goal")
+end

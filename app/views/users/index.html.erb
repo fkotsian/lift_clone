@@ -1,2 +1,22 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<h1>Goals Feed</h1>
+
+<ul>
+	<% @users.each do |user| %>
+	  <li>
+			<strong>
+				<%= user.username %>
+			</strong>
+		</li>
+		<ol>
+		  <% user.goals.each do |goal| %>
+			<li>
+				<% if goal.public %>
+					<%= goal.title %><br>
+					<%= goal.description %><br>
+					<%= goal.completed ? "Complete" : "Incomplete" %><br>
+				<% end %>
+			</li>
+			<% end %>
+		</ol>
+  <% end %>
+</ul>
