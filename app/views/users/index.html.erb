@@ -9,13 +9,13 @@
 		</li>
 		<ol>
 		  <% user.goals.each do |goal| %>
-			<li>
-				<% if goal.public %>
-					<%= goal.title %><br>
-					<%= goal.description %><br>
-					<%= goal.completed ? "Complete" : "Incomplete" %><br>
+			<% if goal.public %>
+			  <li>
+				<strong><%= goal.title.capitalize %></strong>
+				<p>Description: <%= goal.description %></p>
+				<p>Status: <%= goal.completed ? "Complete" : "Incomplete" %></p><br>
 				<% end %>
-			</li>
+			  </li>
 			<% end %>
 		</ol>
   <% end %>

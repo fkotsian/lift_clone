@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20140502185143) do
     t.datetime "updated_at"
   end
 
-  add_index "goals", ["user_id"], name: "index_goals_on_user_id", using: :btree
+  add_index "goals", ["user_id"], name: "index_goals_on_user_id", using: :btreek
 
   create_table "users", force: true do |t|
     t.string   "username",        null: false

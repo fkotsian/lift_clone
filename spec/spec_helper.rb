@@ -90,7 +90,7 @@ def create_private_goal
   click_button("Create Goal")
 end
 
-def create_private_goal
+def create_buck_goal
   fill_in "Goal Title", with: "Banana SMOOTOOOOTHIE"
   fill_in "Goal Description", with: "Keep it safe"
   choose('Public')

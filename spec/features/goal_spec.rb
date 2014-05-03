@@ -86,9 +86,8 @@ feature "Goal" do
   context "showing a goal" do
 
     before(:each) do
-      g1 = FactoryGirl.create(:test_goal, { user_id: 1 })
-      g2 = FactoryGirl.create(:private_goal, { user_id: 1 })
-      visit goal_url(g1)
+      click_link "Create New Goal"
+      create_test_goal
     end
 
     scenario "should have goal title" do
@@ -99,16 +98,13 @@ feature "Goal" do
       expect(page).to have_content 'Win at AA Assessments'
     end
 
-    scenario "goals should show completion status" do
+    context "goals should show completion status" do
 
-      expect(page).to have_content 'Status'
-      expect(page).to have_button 'Complete Goal'
-
-      context "with an incomplete goal" do
+      scenario "with an incomplete goal" do
         expect(page).to have_content "Incomplete"
       end
 
-      context "with a complete goal" do
+      scenario "with a complete goal" do
         click_button "Complete Goal"
         expect(page).to have_content "Complete"
       end
@@ -117,57 +113,49 @@ feature "Goal" do
 
     scenario "user can see all owned goals" do
       click_link "Back to Home"
+      click_link "Create New Goal"
+      create_private_goal
+      click_link "Back to Home"
+      save_and_open_page
       expect(page).to have_content "Win at AA Assessments"
       expect(page).to have_content "Keep it secret"
     end
+
    end
 
-  # context "goals feed" do
-#
-#     before :each do
-#
-#
-#       jeff = FactoryGirl.build(:jeff)
-#       buck = FactoryGirl.create(:buck)
-#
-#       jeff_goal = FactoryGirl.create :test_goal, user_id: 1
-#       jeff_private_goal = FactoryGirl.create :private_goal, user_id: 1
-#       completed_goal = FactoryGirl.create :completed_goal, user_id: 1
-#       buck_goal = FactoryGirl.create :buck_goal, user_id: buck.id
-#       # click_link "Create New Goal"
-#  #      create_test_goal
-#  #      click_link "Back to Home"
-#  #      click_link "Create New Goal"
-#  #      create_private_goal
-#  #      logout
-#  #      signup_as_buck
-#  #      click_link "Create New Goal"
-#  #      create_buck_goal
-#  #
-#        click_link "Goal Feed"
-#     end
-#
-#     scenario "user can see all public goals" do
-#       save_and_open_page
-#       expect(page).to have_content "Win at AA Assessments"
-#       expect(page).to have_content "Banana SMOOTOOOOTHIE"
-#     end
-#
-#     scenario "user cannot see private goals of other users" do
-#       expect(page).to_not have_content "Keep it secret"
-#     end
-#
-#   end
+  context "goals feed" do
 
-  # scenario "user cannot see others\' public goals" do
- #    create_private_goal
- #    logout
- #    signup_as_buck
- #    create_buck_goal
- #    click_link "Back to Home"
- #    expect(page).to_not have_content "Win at AA Assessments"
- #  end
+    buck = FactoryGirl.create(:buck)
+    completed_goal = FactoryGirl.create :completed_goal, user_id: buck.id
+    private_goal = FactoryGirl.create :private_goal, user_id: buck.id
+    buck_goal = FactoryGirl.create :buck_goal, user_id: buck.id
 
+    before :each do
+
+      # click_link "Create New Goal"
+#       create_test_goal
+#       click_link "Back to Home"
+#       click_link "Create New Goal"
+#       create_private_goal
+#       logout
+#       signup_as_buck
+#       click_link "Create New Goal"
+#       create_buck_goal
+
+       click_link "Goal Feed"
+    end
+
+    scenario "user can see all public goals" do
+      save_and_open_page
+      expect(page).to have_content "I kick ass"
+      expect(page).to have_content "Banana SMOOTOOOOTHIE"
+    end
+
+    scenario "user cannot see private goals of other users" do
+      expect(page).to_not have_content "Keep it secret"
+    end
+
+  end
 # destroying a goal
   # on user show page
   # should have button to remove goal

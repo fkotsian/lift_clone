@@ -1,6 +1,10 @@
 <h1><%= @goal.title %></h1>
 <h3><%= @goal.description %></h1>
 <p>Status: <%= @goal.completed ? "Complete" : "Incomplete" %></p>
+<%= form_for @goal do |g| %>
+	<%= g.hidden_field :completed, value: true %>
+	<%= g.submit "Complete Goal" %>
+<% end %>
 
 
 <%= link_to "Edit Goal", edit_goal_url(@goal) %><br>

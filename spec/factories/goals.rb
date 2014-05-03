@@ -3,10 +3,6 @@
 FactoryGirl.define do
 
   factory :goal do
-    title "String"
-    description "Long String"
-    completed false
-    public false
 
     factory :test_goal do
       title "Win at App Academy"
@@ -19,6 +15,7 @@ FactoryGirl.define do
       title "Keep it secret"
       description "Keep it safe"
       completed false
+      public false
     end
 
     factory :completed_goal do
